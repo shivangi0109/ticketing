@@ -32,4 +32,28 @@
 
 * Now run skaffold dev in terminal under ticketing folder
 
-* Now if the skaffold dev is running, so now make changes to your auth index.ts express file like - console.log('Listening on port 3000!!!!!!')and see if that changes are reflecting in the skaffold terminal
+* Now if the skaffold dev is running, so now make changes to your auth index.ts express file like - 
+```
+console.log('Listening on port 3000!!!!!!')
+```
+and see if that changes are reflecting in the skaffold terminal
+
+* If you did not see your server restart after changing the index.ts file, do the following: 
+  
+1. Open the package.json file in the ‘auth’ directory
+
+2. Find the ‘start’ script
+
+Update the start script to the following:
+
+```
+ts-node-dev --poll src/index.ts
+```
+
+# Steps in back end for auth to set up ingress-nginx.
+
+* Add a get route for current user just to check in index.ts epress file.
+
+* I will see that my auth server is automatically restarted becuase of the skaffold dev, it is watching for changes everytime
+
+* Now we need to access our running server specifically our auth pod. To access anything inside of our cluster, we have to set up one of two things. We really have two options. We can either set up one of those node port services or we can set up that ingress service. Remember that ingress is all about having some routing rules tied to nginx, so at any time a request comes into our cluster, it'll be handled by that ingress service. They'll be routed off to the appropriate service within our cluster. So we will create a new file inside our infra/k8s directory ingress-serv.yaml.
