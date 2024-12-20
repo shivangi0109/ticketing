@@ -57,3 +57,9 @@ ts-node-dev --poll src/index.ts
 * I will see that my auth server is automatically restarted becuase of the skaffold dev, it is watching for changes everytime
 
 * Now we need to access our running server specifically our auth pod. To access anything inside of our cluster, we have to set up one of two things. We really have two options. We can either set up one of those node port services or we can set up that ingress service. Remember that ingress is all about having some routing rules tied to nginx, so at any time a request comes into our cluster, it'll be handled by that ingress service. They'll be routed off to the appropriate service within our cluster. So we will create a new file inside our infra/k8s directory ingress-serv.yaml.
+
+# Tweak host file and security warning
+
+* For Mac/Linux - For ticketing.dev, run in terminal in ticketing directory code /etc/hosts
+* Find minikube ip in terminal and add ticketing.dev with minikube ip in the /etc/hosts file
+* Now got to the browser and open ticketing.dev/api/users/currentuser and if the connection is not private, type anywhere in the browser  'thisisunsafe'
